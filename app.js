@@ -172,7 +172,8 @@ app.post("/download", express.json(), async (req, res) => {
       .json({ error: "An error occurred while generating the PDF report" });
   }
 });
+const PORT = process.env.PORT || 3000;
 //start the server
-app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
+app.listen(PORT, () => {
+  console.log(`Listening on port ${PORT}`);
 });
