@@ -1,68 +1,138 @@
 <%- include("partials/head", { title: "Plant Analyzer | AI Plant Analysis" }) %>
 <%- include("partials/navbar") %>
 
-<section class="flex flex-col md:flex-row items-center justify-between px-10 py-20 max-w-7xl mx-auto">
+<!-- HERO -->
+<!-- HERO -->
+<section class="relative min-h-screen overflow-hidden flex items-center">
 
-  <!-- Left -->
-  <div class="md:w-1/2">
-    <h2 class="text-4xl md:text-5xl font-extrabold leading-tight">
-      AI Powered <span class="text-green-600">Plant Analysis</span>
-    </h2>
+  <!-- Background Image -->
+  <div class="absolute inset-0">
+    <img
+      src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=2000&q=80"
+      alt="Plant background"
+      class="w-full h-full object-cover"
+    />
 
-    <p class="mt-6 text-lg text-gray-600">
-      Upload a plant image and get detailed insights about its species,
-      characteristics, health condition, and care instructions using AI.
-    </p>
+    <!-- Soft blur layer -->
+    <div class="absolute inset-0 backdrop-blur-[2px]"></div>
 
-    <div class="mt-8 flex gap-4">
-      <a href="/register"
-         class="bg-green-600 text-white px-6 py-3 rounded-lg text-lg hover:bg-green-700 transition">
-        Explore 🌿
-      </a>
+    <!-- Gradient overlay -->
+    <div class="absolute inset-0 bg-gradient-to-br from-emerald-900/70 via-green-800/60 to-teal-900/70"></div>
+  </div>
+
+  <!-- Glow blobs -->
+  <div class="absolute top-[-120px] right-[-120px] w-[400px] h-[400px] bg-green-400/20 rounded-full blur-3xl"></div>
+  <div class="absolute bottom-[-120px] left-[-120px] w-[400px] h-[400px] bg-emerald-300/20 rounded-full blur-3xl"></div>
+
+  <!-- Content -->
+  <div class="relative z-10 max-w-7xl mx-auto px-6 py-24 w-full">
+    <div class="flex flex-col lg:flex-row items-center justify-between gap-16">
+
+      <!-- LEFT CONTENT -->
+      <div class="lg:w-1/2 opacity-0 reveal">
+
+        <p class="uppercase tracking-widest text-green-200 font-semibold mb-4">
+          AI Plant Intelligence
+        </p>
+
+        <h1 class="text-4xl md:text-6xl font-black leading-tight text-white">
+          Diagnose Your Plants  
+          <span class="block text-green-300">in Seconds 🌿</span>
+        </h1>
+
+        <p class="mt-6 text-lg text-green-50/90 max-w-xl">
+          Upload a plant photo and instantly discover its species,
+          health status, and expert care recommendations powered by AI.
+        </p>
+
+        <div class="mt-10 flex flex-wrap gap-4">
+          <a href="/register"
+             class="bg-white text-green-700 px-8 py-3 rounded-xl font-semibold hover:bg-gray-100 transition shadow-2xl">
+            Try It Free
+          </a>
+
+          <a href="#features"
+             class="border border-white/40 text-white px-8 py-3 rounded-xl font-semibold hover:bg-white/10 transition">
+            See Features
+          </a>
+        </div>
+
+        <!-- Trust line -->
+        <p class="mt-6 text-sm text-green-200/80">
+          ⚡ Fast • 🎯 Accurate • 🤖 AI Powered
+        </p>
+      </div>
+
+      <!-- RIGHT FLOATING STACK -->
+      <div class="lg:w-1/2 relative h-[460px] w-full">
+
+        <!-- Card 1 -->
+        <img
+          src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=700&q=80"
+          class="absolute w-64 rounded-2xl shadow-2xl animate-float reveal"
+          style="top:0; left:18%;"
+          alt="Plant sample"
+        />
+
+        <!-- Card 2 -->
+        <img
+          src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=700&q=80"
+          class="absolute w-72 rounded-2xl shadow-2xl animate-float reveal"
+          style="top:150px; left:0; animation-delay:1.2s"
+          alt="Plant analysis"
+        />
+
+
+      </div>
     </div>
   </div>
-
-  <!-- Right -->
-  <div class="md:w-1/2 mt-12 md:mt-0 flex justify-center">
-    <img
-      src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6"
-      class="rounded-2xl shadow-lg w-[420px]"
-      alt="Plant"
-    />
-  </div>
-
 </section>
-
-<section id="features" class="bg-white py-20">
+<!-- FEATURES -->
+<section id="features" class="bg-white py-24">
   <div class="max-w-7xl mx-auto px-8">
-    <h3 class="text-3xl font-bold text-center mb-12">
-      What Can This App Do?
+
+    <h3 class="text-3xl md:text-4xl font-bold text-center mb-16 opacity-0 reveal">
+      Powerful AI Features
     </h3>
 
-    <div class="grid md:grid-cols-3 gap-8">
-      <div class="p-6 rounded-xl shadow hover:shadow-lg transition">
+    <div class="grid md:grid-cols-3 gap-10">
+
+      <div class="p-8 rounded-2xl shadow-lg hover:shadow-2xl transition opacity-0 reveal">
         <h4 class="text-xl font-semibold mb-3">🌿 Plant Identification</h4>
         <p class="text-gray-600">
-          Identify plant species accurately using AI image analysis.
+          Identify plant species accurately using AI vision models.
         </p>
       </div>
 
-      <div class="p-6 rounded-xl shadow hover:shadow-lg transition">
+      <div class="p-8 rounded-2xl shadow-lg hover:shadow-2xl transition opacity-0 reveal">
         <h4 class="text-xl font-semibold mb-3">🧪 Health Analysis</h4>
         <p class="text-gray-600">
-          Detect health conditions and get useful recommendations.
+          Detect diseases, stress, and nutrient deficiencies.
         </p>
       </div>
 
-      <div class="p-6 rounded-xl shadow hover:shadow-lg transition">
-        <h4 class="text-xl font-semibold mb-3">📘 Care Guide</h4>
+      <div class="p-8 rounded-2xl shadow-lg hover:shadow-2xl transition opacity-0 reveal">
+        <h4 class="text-xl font-semibold mb-3">📘 Smart Care Guide</h4>
         <p class="text-gray-600">
-          Learn watering, sunlight, soil, and plant care tips.
+          Get watering, sunlight, and soil recommendations.
         </p>
       </div>
+
     </div>
   </div>
 </section>
 
-<%- include("partials/footer") %>
+<!-- Scroll Reveal Script -->
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-fadeUp')
+      }
+    })
+  }, { threshold: 0.15 })
 
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el))
+</script>
+
+<%- include("partials/footer") %>

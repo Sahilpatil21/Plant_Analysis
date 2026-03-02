@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Plant Analysis Report</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600&family=Arial:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 40px;
+            color: #333;
+        }
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #2ecc71;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .title {
+            font-size: 28px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        .date {
+            font-size: 16px;
+            color: #7f8c8d;
+        }
+        .content {
+            font-size: 14px;
+            white-space: pre-wrap;
+            margin-bottom: 30px;
+        }
+        .image-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .plant-image {
+            max-width: 500px;
+            max-height: 300px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .marathi-content {
+            font-family: 'Noto Sans Devanagari', 'Arial', sans-serif;
+            font-size: 16px;
+            line-height: 1.8;
+            direction: ltr;
+            unicode-bidi: embed;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="title">Plant Analysis Report</div>
+        <div class="date">Date: <%= new Date().toLocaleDateString() %></div>
+    </div>
+    
+    <div class="content <%= language === 'marathi' ? 'marathi-content' : '' %>">
+        <%= result %>
+    </div>
+    
+    <% if (image) { %>
+    <div class="image-container">
+        <img src="<%= image %>" alt="Plant Image" class="plant-image">
+    </div>
+    <% } %>
+</body>
+</html>

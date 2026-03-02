@@ -4,16 +4,21 @@ const JWT=require("jsonwebtoken")
 const isAuthenticated = (req, res, next) => {
     const token = req.cookies?.Token; // Changed 'token' to 'Token' to match the cookie name
     
+    console.log('Auth middleware - Token found:', !!token); // Debug log
+    
     if (!token) {
+        console.log('Auth middleware - No token found, redirecting to login');
         return res.redirect('/login'); // Added return to prevent further execution
     }
     
     try {
         const decoded = JWT.verify(token, 'anykey');
+        console.log('Auth middleware - Token decoded successfully:', decoded); // Debug log
         req.user = decoded;
         return next();
     } catch (err) {
         console.error('JWT ERROR:', err);
+        console.log('Auth middleware - Invalid token, clearing cookie and redirecting');
         res.clearCookie('Token'); // Clear invalid token
         return res.redirect('/login');
     }

@@ -1,74 +1,185 @@
-<%- include("partials/head", { title: "Login | Plant Analyzer" }) %>
-<%- include("partials/navbar") %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login | Plant Analyzer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<section class="min-h-screen flex items-center justify-center bg-green-50 px-4">
-  <div class="w-full max-w-md bg-white rounded-xl shadow-lg p-8">
-    
-    <div class="text-center mb-6">
-      <h2 class="text-3xl font-bold text-green-700">Welcome Back 🌿</h2>
-      <p class="text-gray-500 mt-1">Login to analyze plants smarter</p>
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    /* animated gradient */
+    .animated-bg {
+      background: linear-gradient(-45deg, #e8f5e9, #c8e6c9, #a5d6a7, #e8f5e9);
+      background-size: 400% 400%;
+      animation: gradientMove 12s ease infinite;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* float animation */
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    /* scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body class="animated-bg min-h-screen relative overflow-x-hidden">
+
+  <!-- faint background image -->
+  <div class="absolute inset-0 -z-10">
+    <img
+      src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=1600&q=80"
+      class="w-full h-full object-cover opacity-20"
+      alt="background plant"
+    />
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="backdrop-blur-lg bg-white/30 border-b border-white/20 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-green-700">🌿 Plant Analyzer</h1>
+      <div class="space-x-6 hidden md:block">
+        <a href="/" class="text-gray-700 hover:text-green-600 font-medium">Home</a>
+        <a href="/register" class="text-gray-700 hover:text-green-600 font-medium">Register</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <section class="min-h-screen flex items-center justify-center px-4 relative">
+
+    <!-- floating plants -->
+    <div class="absolute inset-0 pointer-events-none">
+
+      <img
+        src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=600&q=80"
+        class="absolute w-52 rounded-2xl shadow-2xl animate-float reveal ring-4 ring-white/30"
+        style="top:120px; left:5%; animation-delay:0s"
+      />
+
+      <img
+        src="https://images.unsplash.com/photo-1512428813834-c702c7702b78?auto=format&fit=crop&w=600&q=80"
+        class="absolute w-56 rounded-2xl shadow-2xl animate-float reveal ring-4 ring-white/30"
+        style="bottom:120px; left:12%; animation-delay:1s"
+      />
+
+      <!-- healthy plant fixed -->
+      <div style="top:220px; right:6%; position:absolute; z-index:30;">
+        <img
+          src="https://images.unsplash.com/photo-1512428813834-c702c7702b78?auto=format&fit=crop&w=600&q=80"
+          class="w-60 rounded-2xl shadow-2xl animate-float reveal ring-4 ring-white/30"
+          style="animation-delay:2s"
+          alt="Healthy plant"
+        />
+        <div class="absolute inset-0 rounded-2xl bg-white/20 blur-xl -z-10"></div>
+      </div>
+
     </div>
 
-    <% if (typeof error !== "undefined") { %>
-      <div class="bg-red-100 text-red-700 p-3 rounded mb-4 text-sm">
-        <%= error %>
-      </div>
-    <% } %>
+    <!-- LOGIN CARD -->
+    <div class="w-full max-w-md bg-white/80 backdrop-blur-xl rounded-2xl shadow-2xl p-8 reveal">
 
-    <form action="/login" method="POST" class="space-y-5">
-
-      <!-- Email -->
-      <div>
-        <label class="block text-sm font-medium text-gray-700">Email</label>
-        <input
-          type="email"
-          name="email"
-          required
-          placeholder="you@example.com"
-          class="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
-        />
+      <div class="text-center mb-6">
+        <h2 class="text-3xl font-bold text-green-700">Welcome Back 🌿</h2>
+        <p class="text-gray-500 mt-1">Login to analyze plants smarter</p>
       </div>
 
-      <!-- Password -->
-      <div>
-        <label class="block text-sm font-medium text-gray-700">Password</label>
-        <input
-          type="password"
-          name="password"
-          required
-          placeholder="••••••••"
-          class="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
-        />
-      </div>
+      <% if (typeof error !== "undefined") { %>
+        <div class="bg-red-100 text-red-700 p-3 rounded mb-4 text-sm">
+          <%= error %>
+        </div>
+      <% } %>
 
-      <!-- Remember me -->
-      <div class="flex items-center justify-between text-sm">
-        <label class="flex items-center gap-2">
-          <input type="checkbox" class="rounded text-green-600" />
-          Remember me
-        </label>
-        <a href="/forgot-password" class="text-green-600 hover:underline">
-          Forgot password?
+      <form action="/login" method="POST" class="space-y-5">
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Email</label>
+          <input
+            type="email"
+            name="email"
+            required
+            placeholder="you@example.com"
+            class="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+          />
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Password</label>
+          <input
+            type="password"
+            name="password"
+            required
+            placeholder="••••••••"
+            class="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+          />
+        </div>
+
+        <div class="flex items-center justify-between text-sm">
+          <label class="flex items-center gap-2">
+            <input type="checkbox" class="rounded text-green-600" />
+            Remember me
+          </label>
+          <a href="/forgot-password" class="text-green-600 hover:underline">
+            Forgot password?
+          </a>
+        </div>
+
+        <button
+          type="submit"
+          class="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition">
+          Login
+        </button>
+      </form>
+
+      <p class="text-center text-sm text-gray-600 mt-6">
+        Don’t have an account?
+        <a href="/register" class="text-green-600 font-semibold hover:underline">
+          Register
         </a>
-      </div>
+      </p>
 
-      <!-- Button -->
-      <button
-        type="submit"
-        class="w-full bg-green-600 text-white py-2 rounded-lg font-semibold hover:bg-green-700 transition"
-      >
-        Login
-      </button>
-    </form>
+    </div>
+  </section>
 
-    <p class="text-center text-sm text-gray-600 mt-6">
-      Don’t have an account?
-      <a href="/register" class="text-green-600 font-semibold hover:underline">
-        Register
-      </a>
-    </p>
+  <!-- FOOTER -->
+  <footer class="text-center py-6 text-gray-600 backdrop-blur-lg bg-white/30 border-t border-white/20">
+    © 2026 Plant Analyzer • Grow Smart 🌱
+  </footer>
 
-  </div>
-</section>
+  <!-- reveal script -->
+  <script>
+    const reveals = document.querySelectorAll(".reveal");
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add("active");
+      });
+    }, { threshold: 0.15 });
 
-<%- include("partials/footer") %>
+    reveals.forEach(r => observer.observe(r));
+  </script>
+
+</body>
+</html>

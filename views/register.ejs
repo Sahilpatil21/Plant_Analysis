@@ -1,63 +1,181 @@
-<%- include("partials/head", { title: "Register | Plant Analyzer" }) %>
-<%- include("partials/navbar") %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Register | Plant Analyzer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<section class="min-h-screen flex items-center justify-center bg-green-50 px-4">
-  <div class="bg-white shadow-xl rounded-2xl w-full max-w-md p-8">
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-    <h2 class="text-3xl font-bold text-center text-green-600 mb-6">
-      Create Account 🌱
-    </h2>
+  <style>
+    /* animated gradient */
+    .animated-bg {
+      background: linear-gradient(-45deg, #e8f5e9, #c8e6c9, #a5d6a7, #e8f5e9);
+      background-size: 400% 400%;
+      animation: gradientMove 12s ease infinite;
+    }
 
-    <form action="/register" method="POST" class="space-y-5">
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
 
-      <div>
-        <label class="block text-sm font-semibold mb-1">Full Name</label>
-        <input
-          type="text"
-          name="name"
-          required
-          placeholder="Enter your name"
-          class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-        />
-      </div>
+    /* float animation */
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
 
-      <div>
-        <label class="block text-sm font-semibold mb-1">Email</label>
-        <input
-          type="email"
-          name="email"
-          required
-          placeholder="Enter your email"
-          class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-        />
-      </div>
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
 
-      <div>
-        <label class="block text-sm font-semibold mb-1">Password</label>
-        <input
-          type="password"
-          name="password"
-          required
-          placeholder="Create password"
-          class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-        />
-      </div>
+    /* scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease;
+    }
 
-      <button
-        type="submit"
-        class="w-full bg-green-600 text-white py-3 rounded-lg text-lg font-semibold hover:bg-green-700 transition">
-        Register
-      </button>
-    </form>
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
 
-    <p class="text-center text-sm mt-6">
-      Already have an account?
-      <a href="/login" class="text-green-600 font-semibold hover:underline">
-        Login
-      </a>
-    </p>
+<body class="animated-bg min-h-screen relative overflow-x-hidden">
 
+  <!-- faint background image -->
+  <div class="absolute inset-0 -z-10">
+    <img
+      src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=1600&q=80"
+      class="w-full h-full object-cover opacity-20"
+      alt="background plant"
+    />
   </div>
-</section>
 
-<%- include("partials/footer") %>
+  <!-- NAVBAR -->
+  <nav class="backdrop-blur-lg bg-white/30 border-b border-white/20 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-green-700">🌿 Plant Analyzer</h1>
+      <div class="space-x-6 hidden md:block">
+        <a href="/" class="text-gray-700 hover:text-green-600 font-medium">Home</a>
+        <a href="/login" class="text-gray-700 hover:text-green-600 font-medium">Login</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN SECTION -->
+  <section class="min-h-screen flex items-center justify-center px-4 relative">
+
+    <!-- floating plants -->
+    <div class="absolute inset-0 pointer-events-none">
+
+      <!-- card 1 -->
+      <img
+        src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=600&q=80"
+        class="absolute w-52 rounded-2xl shadow-2xl animate-float reveal ring-4 ring-white/30"
+        style="top:120px; left:5%; animation-delay:0s"
+      />
+
+      <!-- card 2 -->
+      <img
+        src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=600&q=80"
+        class="absolute w-56 rounded-2xl shadow-2xl animate-float reveal ring-4 ring-white/30"
+        style="bottom:120px; left:12%; animation-delay:1s"
+      />
+
+      <!-- card 3 (fixed visibility) -->
+      <div style="top:220px; right:6%; position:absolute; z-index:30;">
+        <img
+          src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=600&q=80"
+          class="w-60 rounded-2xl shadow-2xl animate-float reveal ring-4 ring-white/30"
+          style="animation-delay:2s"
+          alt="Healthy plant"
+        />
+        <div class="absolute inset-0 rounded-2xl bg-white/20 blur-xl -z-10"></div>
+      </div>
+
+    </div>
+
+    <!-- REGISTER CARD -->
+    <div class="bg-white/80 backdrop-blur-xl shadow-2xl rounded-2xl w-full max-w-md p-8 reveal">
+
+      <h2 class="text-3xl font-bold text-center text-green-600 mb-6">
+        Create Account 🌱
+      </h2>
+
+      <form action="/register" method="POST" class="space-y-5">
+
+        <div>
+          <label class="block text-sm font-semibold mb-1">Full Name</label>
+          <input
+            type="text"
+            name="name"
+            required
+            placeholder="Enter your name"
+            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+          />
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold mb-1">Email</label>
+          <input
+            type="email"
+            name="email"
+            required
+            placeholder="Enter your email"
+            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+          />
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold mb-1">Password</label>
+          <input
+            type="password"
+            name="password"
+            required
+            placeholder="Create password"
+            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+          />
+        </div>
+
+        <button
+          type="submit"
+          class="w-full bg-green-600 text-white py-3 rounded-lg text-lg font-semibold hover:bg-green-700 transition">
+          Register
+        </button>
+      </form>
+
+      <p class="text-center text-sm mt-6">
+        Already have an account?
+        <a href="/login" class="text-green-600 font-semibold hover:underline">
+          Login
+        </a>
+      </p>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="text-center py-6 text-gray-600 backdrop-blur-lg bg-white/30 border-t border-white/20">
+    © 2026 Plant Analyzer • Grow Smart 🌱
+  </footer>
+
+  <!-- scroll reveal script -->
+  <script>
+    const reveals = document.querySelectorAll(".reveal");
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add("active");
+      });
+    }, { threshold: 0.15 });
+
+    reveals.forEach(r => observer.observe(r));
+  </script>
+
+</body>
+</html>
